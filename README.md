@@ -9,4 +9,4 @@ Update: 26/09/2014:
   The code that is currently committed only converts English text to Morse text and vice versa. 
   It also creates the sound file of the Morse code.
   
-  Currently working on reading the mors
+  Currently working on reading the morse sound file and converting it to English text
