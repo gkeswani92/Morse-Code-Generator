@@ -23,9 +23,16 @@ def loadMorseToEnglish():
     #printDictionary(morseToEngDict)
 
 def MorseToEnglish(morseSentence):
-    '''This function takes the morse code as the input and converts into the corresponding 
-    english sentence. There is a space left between each alphabet in the morse code
-    while each word has a gap of 3 spaces'''
+    '''This function takes the morse code as the input, converts it into binary form for processing
+    and converts into the corresponding english sentence. 
+    
+    There is a space left between each alphabet in the morse code while each word has a gap of 3 spaces'''
+    
+    #Loading the current configuration of the morse code into the dictionary
+    loadMorseToEnglish()
+    
+    #Converting morse code to 0's and 1's
+    morseSentence = processMorse(morseSentence)
     
     englishSentence = ""
     
@@ -40,21 +47,15 @@ def MorseToEnglish(morseSentence):
     englishSentence = englishSentence.rstrip()
     return englishSentence
 
+
 def main():
     '''This function is the main function of the module and acts as the controller for the 
-    whole application'''
-     
-    #Loading the current configuration of the morse code into the dictionary
-    loadMorseToEnglish()
+    whole application.
     
-    #Taking english input from user to convert to morse code
-    global sentence
-    sentence = input("Please enter the morse code--> ")
+    It is the function which is called when this script is the main module. Otherwise, the Morse
+    To English function is directly called'''
     
-    #Sample input for "Hello There" is ".... . .-.. .-.. ---   - .... . .-. ."
-    #Sample input for "My name is Gaurav" is "-- -.--   -. .- -- .   .. ...   --. .- ..- .-. .- ...-"
-    
-    sentence = processMorse(sentence) #Converting morse code to 0's and 1's
+    sentence = input("Please enter the word to be converted to English--> ")
     
     #Calling function to convert user input into morse code
     english = MorseToEnglish(sentence)

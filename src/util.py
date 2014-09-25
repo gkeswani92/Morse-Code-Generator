@@ -11,6 +11,7 @@ def playSoundWin(name):
 def createSoundFile(morse):
     dot = AudioSegment.from_wav(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\dot.wav")
     dash = AudioSegment.from_wav(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\dash.wav")
+    #word_gap = AudioSegment.from_wav(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\void.wav")
     
     sound_config = AudioSegment.empty()
     
@@ -28,9 +29,8 @@ def createSoundFile(morse):
             #Adding a 100ms wait between each alphabet
             else:
                 sound_config += AudioSegment.silent(300)
-        #Adding a 700ms wait between each word
-        sound_config += AudioSegment.silent(700)
-            
+        sound_config += dot[0.1:0.2]
+    
     #Exporting the sound file as output.wav
     sound_config.export(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\morse.wav", format="wav")
     
