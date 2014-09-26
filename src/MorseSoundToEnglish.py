@@ -1,7 +1,9 @@
 import wave
 import struct
 from MorseToEnglish import MorseToEnglish
+
 morse, dot, dash = [], [], []
+morse_text = ""
 
 def readMorseFile():
     '''This function unpacks the morse code sound file and returns a list with the string 
@@ -70,41 +72,55 @@ def readDashFile():
     return list_dash
     
     
+def checkForSpace(flag):
+    '''This function is used to check for and thus add spaces between the morse code alphabets'''
+    
+    global morse_text
+    
+    #If flag is true and the call has reached here, it means that all 0's are over and we have reached the next element
+    if flag == True:
+        morse_text += " "
+        flag = False
+    return flag   
+
+
+
 def printMorseText():
     '''This function takes the morse, dot and dash byte string lists and prints out the 
     morse code in the text form'''
     
-    global morse, dot, dash   
-    morse_text = ""
+    global morse, dot, dash, morse_text   
+    
     
     flag = False
     
     for i, item in enumerate(morse):
+        #Checking if the next character exists
         if i+1 < len(morse):
+            #If the current and next item match the corresponding elements in the dot wav file
             if item == dot[1] and morse[i+1]==dot[2]:
-                if flag == True:
-                    morse_text += " "
-                    flag = False
+                flag = checkForSpace(flag) 
                 morse_text += "."
             
+            #If the current and next item match the corresponding elements in the dash wav file
             elif item == dash[0] and morse[i+1]==dash[1]:
-                if flag == True:
-                    morse_text += " "
-                    flag = False     
+                flag = checkForSpace(flag)     
                 morse_text += "-"
             
+            #If the current matches the corresponding element in the dot wav file and the next does not
+            #Local logic that inserts only the first element and nothing else in case of printing 3 spaces after every word
             elif item == dot[1] and morse[i+1]!=dot[2]:
-                if flag == True:
-                    morse_text += " "
-                    flag = False
+                flag = checkForSpace(flag) 
                 morse_text += "   "
-                
+            
+            #Checking if the item is zero    
             elif item == 0:
                 flag = True
              
     return morse_text  
 
 def main():
+    '''Controller function for the program'''
     global morse, dot, dash
     
     morse = readMorseFile()
@@ -112,14 +128,12 @@ def main():
     dash = readDashFile()
     
     morse_text = printMorseText()
+    
     print("Morse Text retrieved from sound file: ",morse_text)
     print("English Text retrieved from sound file: ",MorseToEnglish(morse_text))
     
 if __name__ == "__main__" : main()
 
 
-
-
-
-'''Dot ends with 65535 starts with 1
-Dash ends with 750 starts with 65089'''
+#Dot ends with 65535 starts with 1
+#Dash ends with 750 starts with 65089
