@@ -15,12 +15,15 @@ def loadMorseToEnglish():
     
     #Reading each line and adding it to the dictionary
     for line in lines:
-        item = line.split() #Split the line into the alphabet and the morse code
-        value = item[0] #Alphabet chosen as the value
-        key = modifyMorseToBinary(item[1]) #Morse Code modified into 0/1 and chosen as the key
-        morseToEngDict[key] = value #Key and Value added to the dictionary
+        #Split the line into the alphabet and the morse code
+        item = line.split() 
+        #Alphabet chosen as the value
+        value = item[0] 
+        #Morse Code modified into 0/1 and chosen as the key
+        key = modifyMorseToBinary(item[1]) 
+        #Key and Value added to the dictionary
+        morseToEngDict[key] = value 
     
-    #printDictionary(morseToEngDict)
 
 def MorseToEnglish(morseSentence):
     '''This function takes the morse code as the input, converts it into binary form for processing
@@ -36,7 +39,9 @@ def MorseToEnglish(morseSentence):
     
     englishSentence = ""
     
+    #Splitting the morse code into different words
     for item in morseSentence.split("   "):
+        #Splitting the morse code word in alphabets
         for code in item.split(" "):
             if code in morseToEngDict:
                 englishSentence += morseToEngDict[code]
@@ -44,6 +49,7 @@ def MorseToEnglish(morseSentence):
                 return "Invalid Morse Code"
         englishSentence += " "
     
+    #Removing the extra spaces on the right side
     englishSentence = englishSentence.rstrip()
     return englishSentence
 
@@ -60,6 +66,7 @@ def main():
     #Calling function to convert user input into morse code
     english = MorseToEnglish(sentence)
     print ("English for '{0}' is '{1}'".format(sentence, english))
+
 
 if __name__ == "__main__" : main()
 

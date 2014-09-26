@@ -25,6 +25,7 @@ def unpackWaveFile(path):
         if i % file.getnchannels() ==0:
             list_file.append(tuple_file[i]) 
     
+    #Returning the unpacked version as a wave file
     return list_file
 
     
@@ -36,6 +37,7 @@ def checkForSpace(flag):
     if flag == True:
         morse_text += " "
         flag = False
+    
     return flag   
 
 

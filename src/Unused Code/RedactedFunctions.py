@@ -17,8 +17,6 @@ def playSound(morse):
                 sleep(0.3) # Time in seconds between alphabets
         sleep(1) # Time in seconds between words
         
-
-
 def findSpaces():
     global morse, dash
     
@@ -45,3 +43,12 @@ def findSpaces():
     print (fifth_dot_end)
     print (first_dash_begin)
     print ("Interword: ",first_dash_begin - fifth_dot_end - 1)
+    
+    
+def playSoundWin(name):
+    '''This function is used to play the sound file depending on the parameter being passed'''
+    if name == "dot":
+        winsound.PlaySound(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\dot.wav",0)
+    elif name == "dash":
+        winsound.PlaySound(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\dash.wav",0)
+    

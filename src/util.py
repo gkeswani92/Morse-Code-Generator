@@ -1,13 +1,5 @@
-import winsound
 from pydub import AudioSegment
 
-def playSoundWin(name):
-    '''This function is used to play the sound file depending on the parameter being passed'''
-    if name == "dot":
-        winsound.PlaySound(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\dot.wav",0)
-    elif name == "dash":
-        winsound.PlaySound(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\dash.wav",0)
-    
 def createSoundFile(morse):
     dot = AudioSegment.from_wav(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\dot.wav")
     dash = AudioSegment.from_wav(r"C:\Users\Gaurav Keswani\Documents\Eclipse\Morse-Code-Generator\src\resources\sound\dash.wav")
